@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: cimg/openjdk:13.0.2
+      - image: docker:17.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
