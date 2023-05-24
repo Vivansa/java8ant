@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build -t ghcr.io/Vivansa/java8ant/java8ant:latest .
+            docker build -t ghcr.io/vivansa/java8ant/java8ant:latest .
       - run:
           name: Publish to github
           command: |
