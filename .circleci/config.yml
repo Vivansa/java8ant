@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/openjdk:13.0.2
+
+  jobs:
+    build:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              docker-compose==1.12.0
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build -t ghcr.io/Vivansa/java8ant/java8ant:latest .
+      - run:
+          name: Publish to github
+          command: |
+            docker login ghcr.io -u dehayol -p ${GITHUB_TOKEN}
+            docker push ghcr.io/vivansa/java8ant/java8ant:latest
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          context: github
