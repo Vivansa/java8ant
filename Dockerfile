@@ -6,3 +6,4 @@ RUN cd / && tar -xf /tmp/apache-ant-1.10.14-bin.tar.gz && chown -R circleci /apa
 USER circleci
 ENV ANT_HOME="/apache-ant-1.10.14"
 ENV PATH="${PATH}:${ANT_HOME}/bin"
+ENV ANT_OPTS="-Xbootclasspath/p:$JAVA_HOME/lib/tools.jar"
